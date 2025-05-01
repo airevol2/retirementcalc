@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<!-- ... your existing <style> stuff above ... -->
+
+<style>
+/* Minimal Ion RangeSlider overrides */
+/* Change the slider line, the filled "bar" portion, and the handle to #718cc9 */
+.irs--big .irs-line {
+  background: #718cc9 !important; /* track color */
+  height: 2px !important;         /* optional: keep it thin */
+  border-radius: 2px !important;
+}
+
+.irs--big .irs-bar {
+  background: #718cc9 !important; /* the "filled" portion */
+  border-radius: 2px !important;
+}
+
+.irs--big .irs-handle {
+  background: #718cc9 !important; /* the draggable knob */
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+/* Minimal Ion RangeSlider overrides */
+/* Summary View Container */
+#summary_div {
+  display: flex;
+  flex-wrap: nowrap; 
+  /* or increase your container width so they don't wrap */
+  gap: 2rem;             /* Spacing between columns */
+  margin-top: 50px;
+  margin-bottom: 50px;
+  align-items: flex-start; /* Top-align columns */
+}
+
+/* Each Summary Column */
+.current,
+.target {
+  flex: 1;
+  min-width: 250px;      /* Prevent columns from getting too narrow */
+}
+
+/* Heading Styling */
+.summary-heading {
+  font-size: 16px !important;
+  color: #575757;
+  margin: 0 0 1rem 0; /* a single consistent bottom margin */
+}
+
+/* Each Row in the Summary (label + value) */
+.summary-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+}
+
+/* Remove border on last row if desired */
+.summary-child:last-child {
+  border-bottom: none;
+}
+
+/* Label Styling */
+.summary-child label {
+  margin: 0;
+  font-weight: 400;
+  color: #555;
+}
+
+/* Value Styling */
+.summary-span {
+  font-weight: 600;
+  color: #3889fb;
+}
+
+
+</style>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!-- Ion RangeSlider CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+<style>
+.tooltip_span svg {
+  width: 12px;
+  height: 12px;
+}</style>
+
+    <title>womenfinancialpowerretirement</title>
+
+    <style>
+      /********************************************
+       * GLOBAL & FONT
+       ********************************************/
+      body, h5, label, p, input, .card, .cardTwo {
+        font-family: "Open Sans", sans-serif;
+      }
+
+      /********************************************
+       * CARD CONTAINERS
+       ********************************************/
+      .card {
+        margin: auto;
+        background: #DFDCD8;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 24px;
+        border-radius: 0px;
+      }
+      .cardTwo {
+        background: #DFDCD8;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 24px;
+        border-radius: 0px;
+      }
+      .side-detail {
+        background-color: #ffffff;
+      }
+      .right-data {
+        background-color: #ffffff;
+        color: #1c1c1c;
+      }
+
+      /********************************************
+       * RANGE SLIDER COLORS
+       ********************************************/
+      .irs--big .irs-bar {
+        background: #3889fb !important;
+        box-shadow: none !important;
+      }
+      .irs-handle {
+        background: #3889fb !important;
+        box-shadow: none !important;
+      }
+      .irs--big .irs-from,
+      .irs--big .irs-to,
+      .irs--big .irs-single {
+        background: #DFDCD8 !important;
+        color: #000000 !important;
+      }
+
+      /********************************************
+       * HEADINGS
+       ********************************************/
+      .mainheading h5 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1c1c1c;
+        margin-bottom: 10px;
+      }
+      .mainheading2 h5 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1c1c1c;
+        margin-bottom: 10px;
+      }
+      /* You had a second .mainheading2 h5 style (font-size: 14px),
+         but that was conflicting. If you need smaller, uncomment:
+         .mainheading2 h5 {
+           font-size: 14px;
+         }
+      */
+
+      /********************************************
+       * LABELS & FONTS
+       ********************************************/
+      .label {
+        font-size: 13px;
+        margin-bottom: 5px;
+        font-weight: 300;
+      }
+      .label label {
+        display: block;
+        margin-bottom: 5px;
+        color: #1c1c1c;
+      }
+      .labelcustom {
+        font-size: 13px;
+        margin-bottom: 5px;
+        font-weight: 400;
+      }
+      .labelcustom label {
+        display: block;
+        margin: 8px 0px;
+        color: #1c1c1c;
+      }
+
+      /********************************************
+       * INPUT FIELDS
+       ********************************************/
+      input {
+        font-weight: 600 !important;
+        padding: 8px 14px !important;
+        border: 1px solid #ccc !important;
+        background-color: #fff !important;
+        border-radius: 4px !important;
+        width: 100% !important;
+        font-size: 16px !important;
+        text-align: left;
+        color: #010101;
+      }
+
+      /********************************************
+       * RANGE INPUT SPECIFICS
+       ********************************************/
+      input[type="range"] {
+        -webkit-appearance: none;
+        height: 5px;
+        background: #e1e8f0;
+        border-radius: 10px;
+        width: 100%;
+        background-size: 70% 100%;
+        background-repeat: no-repeat;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 14px;
+        background: #dfdcd8;
+        color: #000 !important;
+        cursor: pointer;
+        box-shadow: 0 0 2px 0 #555;
+        transition: background 0.3s ease-in-out;
+        border-radius: 10px;
+        border: 0px solid #4b99e6;
+      }
+      input[type="range"]:hover {
+        background: #d9d9d9;
+      }
+      input[type="range"]:focus {
+        box-shadow: none;
+      }
+
+      /********************************************
+       * ADDITIONAL TEXT STYLES
+       ********************************************/
+      h5 {
+        font-weight: 400;
+        font-size: 22px !important;
+        margin-bottom: 12px;
+      }
+      p {
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .mainheading {
+        color: #792020 !important;
+        transition: all 0.3s ease-in;
+      }
+
+      /********************************************
+       * LAYOUT & UTILITY CLASSES
+       ********************************************/
+      .divstyling {
+        font-size: 14px;
+        color: #000000;
+        padding-right: 63px;
+      }
+      .divstyling p {
+        font-size: 16px;
+        font-weight: 600;
+        color: #006642;
+        padding-top: 8px;
+      }
+      .div_width {
+        max-width: 250px;
+      }
+      .div_width_2 {
+        max-width: 150px;
+        margin: auto;
+      }
+      .border_1 {
+        border: none;
+      }
+      .anchorstyles {
+        color: #005fb9;
+      }
+
+      /********************************************
+       * GRAPH/SUMMARY TOGGLE BUTTONS
+       ********************************************/
+      .detail {
+        background: none;
+        border: none;
+        color: #010101;
+      }
+      .deactive {
+        background: none;
+        border: none;
+        color: #010101;
+      }
+      .active {
+        background: none;
+        border: none;
+        border-bottom: 2px solid #5499fb;
+        color: #5499fb;
+      }
+
+      /********************************************
+       * SUMMARY VIEW
+       ********************************************/
+      #summary_div {
+        display: flex;
+        width: 100%;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+      .summary-child {
+        padding: 6px 0;
+      }
+      .summary-span {
+        float: inline-end;
+        font-weight: 600;
+      }
+      .summary-heading {
+        font-size: 16px !important;
+      }
+
+      /********************************************
+       * COLOR CLASSES
+       ********************************************/
+     .pluton {
+  color: #1c1c1c; /* You can keep this if you like the text color for .pluton */
+}
+.milky {
+  color: #1c1c1c; /* Same if you want to keep milky's text color */
+}
+
+/* "What you'll have" (#203631) */
+.pluton-value,
+.summary-child1 {
+  color: #203631 !important;
+}
+
+/* "What you'll need" (#a9b9a3) */
+.pluton-value1,
+.summary-child2 {
+  color: #a9b9a3 !important;
+}
+
+/* If you need #retirement_age to also be #a9b9a3, keep or remove as you like */
+#retirement_age {
+  color: #a9b9a3 !important;
+}
+
+      /********************************************
+       * HIGHCHARTS TABLE
+       ********************************************/
+      .highcharts-figure,
+      .highcharts-data-table table {
+        max-width: 800px;
+        margin: 1em auto;
+      }
+      .highcharts-data-table table {
+        border-collapse: collapse;
+        border: 1px solid #ebebeb;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+      }
+      .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+      }
+      .highcharts-data-table td,
+      .highcharts-data-table th,
+      .highcharts-data-table caption {
+        padding: 0.5em;
+      }
+      .highcharts-data-table thead tr,
+      .highcharts-data-table tr:nth-child(even) {
+        background: #dfdcd8;
+      }
+      .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+      }
+      .highcharts-background {
+        background-color: #ffffff;
+      }
+
+      /********************************************
+       * RESPONSIVE TWEAKS
+       ********************************************/
+      @media screen and (max-width: 320px) {
+        .divstyling {
+          font-size: 16px;
+          color: #000000;
+          padding-right: 0px;
+        }
+        .divstyling p {
+          font-size: 23px;
+          font-weight: 600;
+          color: #006642;
+          padding-top: 8px;
+        }
+        .div_width,
+        .div_width_2 {
+          max-width: 100%;
+          text-align: center;
+        }
+      }
+      @media (max-width: 400px) {
+        .divstyling {
+          font-size: 16px;
+          color: #000000;
+          padding-right: 0px;
+        }
+        .divstyling p {
+          font-size: 23px;
+          font-weight: 400;
+          color: #006642;
+          padding-top: 8px;
+        }
+        .div_width,
+        .div_width_2 {
+          max-width: 100%;
+          text-align: center;
+        }
+        #summary_div {
+          flex-direction: column;
+        }
+        .current,
+        .target {
+          width: 100% !important;
+          margin: 0px !important;
+        }
+        .target {
+          margin-top: 20px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <!-- LEFT SIDE: Retirement details -->
+        <div class="col-md-4">
+          <div class="card p-md-5 p-3 side-detail">
+            <div class="">
+              <div class="mainheading">
+                <h5>Retirement details</h5>
+              </div>
+              <div>
+                <div class="label">
+                  <label for="currentage">Current age</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    oninput="retirementCalculator()"
+                    value="35"
+                    id="currentage"
+                  />
+                </div>
+
+                <div class="label">
+                  <label for="annualtaxincome">Annual pre-tax income</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    oninput="formatCurrencyField(this); retirementCalculator();"
+                    value="$60,000"
+                    id="annualtaxincome"
+                  />
+                </div>
+
+                <div class="label">
+                  <label for="RetirementSavings"
+                    >Current retirement savings
+                    <span class="tooltip_span" aria-hidden="true">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        class="_2ulGkX"
+                        fill="currentcolor"
+                        id="tooltipIcon1"
+                        focusable="false"
+                      >
+                        <path
+                          d="M12 15.387c-.645 0-1.129.524-1.129 1.13 0 .644.484 1.128 1.129 1.128.605 0 1.129-.484 1.129-1.129 0-.605-.524-1.129-1.129-1.129zm.282-.968a.466.466 0 00.484-.484c0-1.733 3.145-1.612 3.145-4.314 0-2.056-1.854-3.266-3.951-3.266-1.815 0-2.823.726-3.67 1.814-.161.242-.12.525.121.686l.524.403c.202.121.484.08.646-.12.604-.767 1.21-1.17 2.379-1.17 1.613 0 2.338.847 2.338 1.653 0 1.734-3.145 1.492-3.145 4.314a.49.49 0 00.484.484h.645zM12 3.29c4.758 0 8.71 3.912 8.71 8.71A8.7 8.7 0 0112 20.71 8.673 8.673 0 013.29 12 8.699 8.699 0 0112 3.29zM12 2C6.476 2 2 6.516 2 12c0 5.524 4.476 10 10 10 5.484 0 10-4.476 10-10 0-5.484-4.516-10-10-10z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </label>
+                  <div id="messageBox1" style="display: none">
+                    <p>
+                      This is the total of all your retirement savings,
+                      including 401(k) & IRA balances plus any other accounts
+                      earmarked for retirement.
+                    </p>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    oninput="formatCurrencyField(this); retirementCalculator()"
+                    value="$30,000"
+                    id="RetirementSavings"
+                  />
+                </div>
+
+                <div class="label">
+                  <label for="monthlycontribution"
+                    >Monthly contribution
+                    <span class="tooltip_span" aria-hidden="true">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        class="_2ulGkX"
+                        fill="currentcolor"
+                        id="tooltipIcon2"
+                        focusable="false"
+                      >
+                        <path
+                          d="M12 15.387c-.645 0-1.129.524-1.129 1.13 0 .644.484 1.128 1.129 1.128.605 0 1.129-.484 1.129-1.129 0-.605-.524-1.129-1.129-1.129zm.282-.968a.466.466 0 00.484-.484c0-1.733 3.145-1.612 3.145-4.314 0-2.056-1.854-3.266-3.951-3.266-1.815 0-2.823.726-3.67 1.814-.161.242-.12.525.121.686l.524.403c.202.121.484.08.646-.12.604-.767 1.21-1.17 2.379-1.17 1.613 0 2.338.847 2.338 1.653 0 1.734-3.145 1.492-3.145 4.314a.49.49 0 00.484.484h.645zM12 3.29c4.758 0 8.71 3.912 8.71 8.71A8.7 8.7 0 0112 20.71 8.673 8.673 0 013.29 12 8.699 8.699 0 0112 3.29zM12 2C6.476 2 2 6.516 2 12c0 5.524 4.476 10 10 10 5.484 0 10-4.476 10-10 0-5.484-4.516-10-10-10z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </label>
+                  <div id="messageBox2" style="display: none">
+                    <p>
+                      How much you contribute monthly to have enough savings for
+                      your expected retirement budget.
+                    </p>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    oninput="formatCurrencyField(this); retirementCalculator();"
+                    value="$300"
+                    id="monthlycontribution"
+                  />
+                  <p>
+                    <span id="percentOfMonthlyIncome">0</span>% of monthly
+                    income
+                  </p>
+                </div>
+
+                <div class="label">
+                  <label for="monthlybudget"
+                    >Monthly budget in retirement
+                    <span class="tooltip_span" aria-hidden="true">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        class="_2ulGkX"
+                        fill="currentcolor"
+                        id="tooltipIcon3"
+                        focusable="false"
+                      >
+                        <path
+                          d="M12 15.387c-.645 0-1.129.524-1.129 1.13 0 .644.484 1.128 1.129 1.128.605 0 1.129-.484 1.129-1.129 0-.605-.524-1.129-1.129-1.129zm.282-.968a.466.466 0 00.484-.484c0-1.733 3.145-1.612 3.145-4.314 0-2.056-1.854-3.266-3.951-3.266-1.815 0-2.823.726-3.67 1.814-.161.242-.12.525.121.686l.524.403c.202.121.484.08.646-.12.604-.767 1.21-1.17 2.379-1.17 1.613 0 2.338.847 2.338 1.653 0 1.734-3.145 1.492-3.145 4.314a.49.49 0 00.484.484h.645zM12 3.29c4.758 0 8.71 3.912 8.71 8.71A8.7 8.7 0 0112 20.71 8.673 8.673 0 013.29 12 8.699 8.699 0 0112 3.29zM12 2C6.476 2 2 6.516 2 12c0 5.524 4.476 10 10 10 5.484 0 10-4.476 10-10 0-5.484-4.516-10-10-10z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </label>
+                  <div id="messageBox3" style="display: none">
+                    <p>
+                      If unsure, use ~70% of your pre-retirement income as a
+                      starting point.
+                    </p>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    oninput="formatCurrencyField(this); retirementCalculator()"
+                    value="$1,150"
+                    id="monthlybudget"
+                  />
+                  <p style="display: none">
+                    <span id="preRetirementIncomePer">0</span>% of
+                    pre-retirement income
+                  </p>
+                </div>
+
+                <div class="label">
+                  <label for="otherRetirementincome"
+                    >Other retirement income (optional)
+                    <span class="tooltip_span" aria-hidden="true">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        class="_2ulGkX"
+                        fill="currentcolor"
+                        id="tooltipIcon4"
+                        focusable="false"
+                      >
+                        <path
+                          d="M12 15.387c-.645 0-1.129.524-1.129 1.13 0 .644.484 1.128 1.129 1.128.605 0 1.129-.484 1.129-1.129 0-.605-.524-1.129-1.129-1.129zm.282-.968a.466.466 0 00.484-.484c0-1.733 3.145-1.612 3.145-4.314 0-2.056-1.854-3.266-3.951-3.266-1.815 0-2.823.726-3.67 1.814-.161.242-.12.525.121.686l.524.403c.202.121.484.08.646-.12.604-.767 1.21-1.17 2.379-1.17 1.613 0 2.338.847 2.338 1.653 0 1.734-3.145 1.492-3.145 4.314a.49.49 0 00.484.484h.645zM12 3.29c4.758 0 8.71 3.912 8.71 8.71A8.7 8.7 0 0112 20.71 8.673 8.673 0 013.29 12 8.699 8.699 0 0112 3.29zM12 2C6.476 2 2 6.516 2 12c0 5.524 4.476 10 10 10 5.484 0 10-4.476 10-10 0-5.484-4.516-10-10-10z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </label>
+                  <div id="messageBox4" style="display: none">
+                    <p>
+                      E.g., pension benefits, Social Security, or annuity
+                      payouts. This is the monthly total.
+                    </p>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    oninput="formatCurrencyField(this); retirementCalculator()"
+                    value="$0"
+                    id="otherRetirementincome"
+                  />
+                </div>
+
+                <p style="font-size: 13px; line-height: 1.5384615384615385;">
+                  <a
+                    style="
+                      text-decoration: none;
+                      color: #000000;
+                      font-weight: 600;
+                    "
+                    href="javascript:void(0)"
+                    onclick="advanceToggle()"
+                    >ADVANCED DETAILS</a
+                  >
+                </p>
+
+                <div class="label" id="advanceToggle" style="display: none">
+                  <div>
+                    <label for="retirementage"
+                      >Retirement age
+                      <span class="tooltip_span" aria-hidden="true">
+                        <svg
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          class="_2ulGkX"
+                          id="tooltipIcon5"
+                          fill="currentcolor"
+                          focusable="false"
+                        >
+                          <path
+                            d="M12 15.387c-.645 0-1.129.524-1.129 1.13 0 .644.484 1.128 1.129 1.128.605 0 1.129-.484 1.129-1.129 0-.605-.524-1.129-1.129-1.129zm.282-.968a.466.466 0 00.484-.484c0-1.733 3.145-1.612 3.145-4.314 0-2.056-1.854-3.266-3.951-3.266-1.815 0-2.823.726-3.67 1.814-.161.242-.12.525.121.686l.524.403c.202.121.484.08.646-.12.604-.767 1.21-1.17 2.379-1.17 1.613 0 2.338.847 2.338 1.653 0 1.734-3.145 1.492-3.145 4.314a.49.49 0 00.484.484h.645zM12 3.29c4.758 0 8.71 3.912 8.71 8.71A8.7 8.7 0 0112 20.71 8.673 8.673 0 013.29 12 8.699 8.699 0 0112 3.29zM12 2C6.476 2 2 6.516 2 12c0 5.524 4.476 10 10 10 5.484 0 10-4.476 10-10 0-5.484-4.516-10-10-10z"
+                          ></path>
+                        </svg>
+                      </span>
+                    </label>
+                    <div id="messageBox5" style="display: none">
+                      <p>
+                        If you were born in 1960 or later, 67 is when you can
+                        retire with full Social Security benefits.
+                      </p>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name=""
+                      oninput="retirementCalculator()"
+                      value="67"
+                      id="retirementage"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="lifeexpectancy"
+                      >Life expectancy
+                      <span class="tooltip_span" aria-hidden="true">
+                        <svg
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          class="_2ulGkX"
+                          id="tooltipIcon6"
+                          fill="currentcolor"
+                          focusable="false"
+                        >
+                          <path
+                            d="M12 15.387c-.645 0-1.129.524-1.129 1.13 0 .644.484 1.128 1.129 1.128.605 0 1.129-.484 1.129-1.129 0-.605-.524-1.129-1.129-1.129zm.282-.968a.466.466 0 00.484-.484c0-1.733 3.145-1.612 3.145-4.314 0-2.056-1.854-3.266-3.951-3.266-1.815 0-2.823.726-3.67 1.814-.161.242-.12.525.121.686l.524.403c.202.121.484.08.646-.12.604-.767 1.21-1.17 2.379-1.17 1.613 0 2.338.847 2.338 1.653 0 1.734-3.145 1.492-3.145 4.314a.49.49 0 00.484.484h.645zM12 3.29c4.758 0 8.71 3.912 8.71 8.71A8.7 8.7 0 0112 20.71 8.673 8.673 0 013.29 12 8.699 8.699 0 0112 3.29zM12 2C6.476 2 2 6.516 2 12c0 5.524 4.476 10 10 10 5.484 0 10-4.476 10-10 0-5.484-4.516-10-10-10z"
+                          ></path>
+                        </svg>
+                      </span>
+                    </label>
+                    <div id="messageBox6" style="display: none">
+                      <p>
+                        How long you'll need your retirement savings to last.
+                        People are living longer, so plan wisely.
+                      </p>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name=""
+                      oninput="retirementCalculator()"
+                      value="95"
+                      id="lifeexpectancy"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="retirementRatereturn"
+                      >Pre-retirement rate of return
+                      <span class="tooltip_span" aria-hidden="true">
+                        <svg
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          class="_2ulGkX"
+                          id="tooltipIcon7"
+                          fill="currentcolor"
+                          focusable="false"
+                        >
+                          <path
+                            d="M12 15.387c-.645 0-1.129.524-1.129 1.13 0 .644.484 1.128 1.129 1.128.605 0 1.129-.484 1.129-1.129 0-.605-.524-1.129-1.129-1.129zm.282-.968a.466.466 0 00.484-.484c0-1.733 3.145-1.612 3.145-4.314 0-2.056-1.854-3.266-3.951-3.266-1.815 0-2.823.726-3.67 1.814-.161.242-.12.525.121.686l.524.403c.202.121.484.08.646-.12.604-.767 1.21-1.17 2.379-1.17 1.613 0 2.338.847 2.338 1.653 0 1.734-3.145 1.492-3.145 4.314a.49.49 0 00.484.484h.645zM12 3.29c4.758 0 8.71 3.912 8.71 8.71A8.7 8.7 0 0112 20.71 8.673 8.673 0 013.29 12 8.699 8.699 0 0112 3.29zM12 2C6.476 2 2 6.516 2 12c0 5.524 4.476 10 10 10 5.484 0 10-4.476 10-10 0-5.484-4.516-10-10-10z"
+                          ></path>
+                        </svg>
+                      </span>
+                    </label>
+                    <div id="messageBox7" style="display: none">
+                      <p>
+                        Expected average annual return before retirement. 
+                        Default 6% is fairly conservative historically.
+                      </p>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name=""
+                      oninput="retirementCalculator()"
+                      value="6"
+                      id="retirementRatereturn"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="postRetirementrate"
+                      >Post-retirement rate of return
+                      <span class="tooltip_span" aria-hidden="true">
+                        <svg
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          class="_2ulGkX"
+                          id="tooltipIcon8"
+                          fill="currentcolor"
+                          focusable="false"
+                        >
+                          <path
+                            d="M12 15.387c-.645 0-1.129.524-1.129 1.13 0 .644.484 1.128 1.129 1.128.605 0 1.129-.484 1.129-1.129 0-.605-.524-1.129-1.129-1.129zm.282-.968a.466.466 0 00.484-.484c0-1.733 3.145-1.612 3.145-4.314 0-2.056-1.854-3.266-3.951-3.266-1.815 0-2.823.726-3.67 1.814-.161.242-.12.525.121.686l.524.403c.202.121.484.08.646-.12.604-.767 1.21-1.17 2.379-1.17 1.613 0 2.338.847 2.338 1.653 0 1.734-3.145 1.492-3.145 4.314a.49.49 0 00.484.484h.645zM12 3.29c4.758 0 8.71 3.912 8.71 8.71A8.7 8.7 0 0112 20.71 8.673 8.673 0 013.29 12 8.699 8.699 0 0112 3.29zM12 2C6.476 2 2 6.516 2 12c0 5.524 4.476 10 10 10 5.484 0 10-4.476 10-10 0-5.484-4.516-10-10-10z"
+                          ></path>
+                        </svg>
+                      </span>
+                    </label>
+                    <div id="messageBox8" style="display: none">
+                      <p>
+                        Often lower due to shifting toward lower-risk investments
+                        after retirement.
+                      </p>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name=""
+                      oninput="retirementCalculator()"
+                      value="5"
+                      id="postRetirementrate"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="inflationrate">Inflation rate</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name=""
+                      oninput="retirementCalculator()"
+                      value="3"
+                      id="inflationrate"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="annualIncomeincrease"
+                      >Annual income increase</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name=""
+                      oninput="retirementCalculator()"
+                      value="2"
+                      id="annualIncomeincrease"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- END LEFT COL -->
+
+        <!-- RIGHT SIDE: Graph & Summary -->
+        <div class="col-md-8">
+          <div class="cardTwo p-md-5 p-3 right-data">
+            <div class="row">
+              <div>
+                <div class="mainheading2">
+                  <h5>
+                    Retirement savings at age <span id="retirement_age">0</span>
+                  </h5>
+                </div>
+                <div class="d-sm-flex divstyling">
+                  <div class="flex-fill div_width border_1">
+                    <div class="pluton">What you'll have</div>
+                    <p class="pluton-value" id="whatYouHave">0</p>
+                  </div>
+                  <div class="flex-fill div_width_2">
+                    <div class="pluton">What you'll need</div>
+                    <p class="pluton-value1" id="whatYouNeed">0</p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 20px; border-bottom: 1px solid #575757">
+                <div style="border-bottom: 1px solid #575757">
+                  <button
+                    class="active"
+                    id="graphButton"
+                    style="font-size: 13px"
+                  >
+                    GRAPH VIEW
+                  </button>
+                  <button
+                    class="detail"
+                    id="summaryButton"
+                    style="font-size: 13px"
+                  >
+                    SUMMARY VIEW
+                  </button>
+                </div>
+
+                <div id="graph_div" style="margin-top: 30px">
+                  <figure class="highcharts-figure">
+                    <div id="container"></div>
+                  </figure>
+                </div>
+
+                <div id="summary_div" style="display: none">
+                  <div class="current" style="width: 50%; margin-left: 10px">
+                    <h5 class="summary-heading" style="color: #575757">
+                      Current retirement plan
+                    </h5>
+                    <div
+                      class="summary-child"
+                      style="border-bottom: 1px solid #575757"
+                    >
+                      <label class="milky" for="total_retirement_saving"
+                        >Total retirement savings</label
+                      >
+                      <span
+                        class="summary-span summary-child1"
+                        id="total_retirement_saving"
+                        >$11,221</span
+                      >
+                    </div>
+                    <div
+                      class="summary-child"
+                      style="border-bottom: 1px solid #575757"
+                    >
+                      <label class="milky" for="monthly_contribute"
+                        >Monthly contribution</label
+                      >
+                      <span
+                        class="summary-span summary-child1"
+                        id="monthly_contribute"
+                        >$11,221</span
+                      >
+                    </div>
+                    <div
+                      class="summary-child"
+                      style="border-bottom: 1px solid #575757"
+                    >
+                      <label class="milky" for="age_retirement_saving_out"
+                        >Age retirement savings runs out</label
+                      >
+                      <span
+                        class="summary-span summary-child1"
+                        id="age_retirement_saving_out"
+                        >$11,221</span
+                      >
+                    </div>
+                  </div>
+                  <div class="target" style="width: 50%; margin-left: 40px">
+                    <h5 class="summary-heading" style="color: #575757">
+                      Target retirement plan
+                    </h5>
+                    <div
+                      class="summary-child"
+                      style="border-bottom: 1px solid #575757"
+                    >
+                      <label class="milky" for="total_retirement_saving_target"
+                        >Total retirement savings</label
+                      >
+                      <span
+                        class="summary-span summary-child2"
+                        id="total_retirement_saving_target"
+                        >$11,221</span
+                      >
+                    </div>
+                    <div
+                      class="summary-child"
+                      style="border-bottom: 1px solid #575757"
+                    >
+                      <label class="milky" for="monthly_contribute_target"
+                        >Monthly contribution</label
+                      >
+                      <span
+                        class="summary-span summary-child2"
+                        id="monthly_contribute_target"
+                        >$11,221</span
+                      >
+                    </div>
+                    <div
+                      class="summary-child"
+                      style="border-bottom: 1px solid #575757"
+                    >
+                      <label
+                        class="milky"
+                        for="age_retirement_saving_out_target"
+                        >Age retirement savings runs out</label
+                      >
+                      <span
+                        class="summary-span summary-child2"
+                        id="age_retirement_saving_out_target"
+                        >$11,221</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div style="margin-top: 50px" class="mainheading2">
+                  <h5>Refine your results</h5>
+                </div>
+                <div>
+                  <p>
+                    Use the sliders to play with the numbers and find your ideal
+                    plan.
+                  </p>
+                </div>
+                <div class="labelcustom">
+                  <label class="milky" for="monthly_contribution"
+                    >Monthly contribution
+                    <span class="tooltip_span" aria-hidden="true">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        class="_2ulGkX"
+                        fill="currentcolor"
+                        focusable="false"
+                      >
+                        <path
+                          d="M12 15.387c-.645 0-1.129.524-1.129 1.13 0 .644.484 1.128 1.129 1.128.605 0 1.129-.484 1.129-1.129 0-.605-.524-1.129-1.129-1.129zm.282-.968a.466.466 0 00.484-.484c0-1.733 3.145-1.612 3.145-4.314 0-2.056-1.854-3.266-3.951-3.266-1.815 0-2.823.726-3.67 1.814-.161.242-.12.525.121.686l.524.403c.202.121.484.08.646-.12.604-.767 1.21-1.17 2.379-1.17 1.613 0 2.338.847 2.338 1.653 0 1.734-3.145 1.492-3.145 4.314a.49.49 0 00.484.484h.645zM12 3.29c4.758 0 8.71 3.912 8.71 8.71A8.7 8.7 0 0112 20.71 8.673 8.673 0 013.29 12 8.699 8.699 0 0112 3.29zM12 2C6.476 2 2 6.516 2 12c0 5.524 4.476 10 10 10 5.484 0 10-4.476 10-10 0-5.484-4.516-10-10-10z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </label>
+                  <input type="range" id="monthly_contribution_range" />
+                </div>
+
+                <div class="labelcustom">
+                  <label class="milky" for="retirement_age"
+                    >Retirement age
+                  </label>
+                  <input type="range" id="retirement_age_range" />
+                </div>
+
+                <div class="labelcustom">
+                  <label class="milky" for="monthly_retirement_budget"
+                    >Monthly retirement budget
+                    <span class="tooltip_span" aria-hidden="true">
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        class="_2ulGkX"
+                        fill="currentcolor"
+                        focusable="false"
+                      >
+                        <path
+                          d="M12 15.387c-.645 0-1.129.524-1.129 1.13 0 .644.484 1.128 1.129 1.128.605 0 1.129-.484 1.129-1.129 0-.605-.524-1.129-1.129-1.129zm.282-.968a.466.466 0 00.484-.484c0-1.733 3.145-1.612 3.145-4.314 0-2.056-1.854-3.266-3.951-3.266-1.815 0-2.823.726-3.67 1.814-.161.242-.12.525.121.686l.524.403c.202.121.484.08.646-.12.604-.767 1.21-1.17 2.379-1.17 1.613 0 2.338.847 2.338 1.653 0 1.734-3.145 1.492-3.145 4.314a.49.49 0 00.484.484h.645zM12 3.29c4.758 0 8.71 3.912 8.71 8.71A8.7 8.7 0 0112 20.71 8.673 8.673 0 013.29 12 8.699 8.699 0 0112 3.29zM12 2C6.476 2 2 6.516 2 12c0 5.524 4.476 10 10 10 5.484 0 10-4.476 10-10 0-5.484-4.516-10-10-10z"
+                        ></path>
+                      </svg>
+                    </span>
+                  </label>
+                  <input type="range" id="monthly_retirement_budget_range" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- END RIGHT COL -->
+      </div><!-- END ROW -->
+    </div><!-- END CONTAINER -->
+
+    <!-- jQuery, Ion RangeSlider, Popper, Bootstrap, Highcharts Scripts -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- PRESERVED JavaScript EXACTLY as your original (except small formatting) -->
+    <script>
+      function advanceToggle() {
+        jQuery("#advanceToggle").toggle();
+      }
+
+      $("#monthly_contribution_range").ionRangeSlider({
+        min: 0,
+        max: 5000,
+        from: parseCurrency($("#monthlycontribution").val()),
+        step: 1,
+        prefix: "$",
+        skin: "big",
+        onFinish: function (data) {
+          $("#monthlycontribution").val(data.from);
+          retirementCalculator();
+        },
+      });
+
+      $("#retirement_age_range").ionRangeSlider({
+        min: 37,
+        max: 90,
+        from: parseCurrency($("#retirementage").val()),
+        step: 1,
+        skin: "big",
+        onFinish: function (data) {
+          $("#retirementage").val(data.from);
+          retirementCalculator();
+        },
+      });
+
+      $("#monthly_retirement_budget_range").ionRangeSlider({
+        min: 0,
+        max: 100000,
+        from: parseCurrency($("#monthlybudget").val()),
+        step: 1,
+        prefix: "$",
+        skin: "big",
+        onFinish: function (data) {
+          $("#monthlybudget").val(data.from);
+          retirementCalculator();
+        },
+      });
+
+      $("#monthlycontribution").on("input", function () {
+        $("#monthly_contribution_range")
+          .data("ionRangeSlider")
+          .update({
+            from: parseCurrency($(this).val()),
+          });
+      });
+      $("#retirementage").on("input", function () {
+        $("#retirement_age_range")
+          .data("ionRangeSlider")
+          .update({
+            from: parseCurrency($(this).val()),
+          });
+      });
+      $("#monthlybudget").on("input", function () {
+        $("#monthly_retirement_budget_range")
+          .data("ionRangeSlider")
+          .update({
+            from: parseCurrency($(this).val()),
+          });
+      });
+
+      $("#summaryButton").click(function () {
+        $("#graph_div").hide();
+        $("#summary_div").show();
+        $("#summaryButton").removeClass("deactive").addClass("active");
+        $("#graphButton").removeClass("active").addClass("deactive");
+      });
+
+      $("#graphButton").click(function () {
+        $("#graph_div").show();
+        $("#summary_div").hide();
+        $("#summaryButton").removeClass("active").addClass("deactive");
+        $("#graphButton").removeClass("deactive").addClass("active");
+      });
+
+      // Tooltip toggles
+      $("#tooltipIcon1").on("click", function () {
+        $("#messageBox1").toggle();
+      });
+      $("#tooltipIcon2").on("click", function () {
+        $("#messageBox2").toggle();
+      });
+      $("#tooltipIcon3").on("click", function () {
+        $("#messageBox3").toggle();
+      });
+      $("#tooltipIcon4").on("click", function () {
+        $("#messageBox4").toggle();
+      });
+      $("#tooltipIcon5").on("click", function () {
+        $("#messageBox5").toggle();
+      });
+      $("#tooltipIcon6").on("click", function () {
+        $("#messageBox6").toggle();
+      });
+      $("#tooltipIcon7").on("click", function () {
+        $("#messageBox7").toggle();
+      });
+      $("#tooltipIcon8").on("click", function () {
+        $("#messageBox8").toggle();
+      });
+
+      function calculateFutureValueWithInflation(PV, r, n) {
+        return PV * Math.pow(1 + r, n);
+      }
+
+      var wwyn;
+      var balance_array_index;
+      var currentAge;
+      var annualTaxIncome;
+      var currentSavings;
+      var monthlyContribution;
+      var monthlyBudget;
+      var otherRetirementIncome;
+      var retirementAge;
+      var lifeExpectancy;
+      var preRetirementRate;
+      var postRetirementRate;
+      var inflationRate;
+      var annualIncomeIncrease;
+      let dataObject = {};
+      let data = {};
+      var monthly_target;
+
+      var balance_array = [];
+      var ages_array = [];
+      var return_array = [];
+      var salary_basis_array = [];
+      var annual_contribution_array = [];
+      var annual_retirement_array = [];
+      var interest_earned_array = [];
+      var balance_array1 = [];
+      var ages_array1 = [];
+      var return_array1 = [];
+      var salary_basis_array1 = [];
+      var annual_contribution_array1 = [];
+      var annual_retirement_array1 = [];
+      var interest_earned_array1 = [];
+      var retirement_age_when_saving_runout = [];
+
+      // ===============
+      var agesArray = [];
+      var balanceArray = [];
+      var returnArray = [];
+      var salaryBasisArray = [];
+      var annualContributionArray = [];
+      var annualRetirementArray = [];
+      var interestEarnedArray = [];
+
+      retirementCalculator();
+
+      function retirementCalculator() {
+        currentAge = parseFloat(
+          document.getElementById("currentage").value || 0
+        );
+        annualtaxincome = parseFloat(
+          parseCurrency(document.getElementById("annualtaxincome").value || 0)
+        );
+        currentSavings = parseFloat(
+          parseCurrency(document.getElementById("RetirementSavings").value || 0)
+        );
+        monthlyContribution = parseFloat(
+          parseCurrency(
+            document.getElementById("monthlycontribution").value || 0
+          )
+        );
+        monthlybudget = parseFloat(
+          parseCurrency(document.getElementById("monthlybudget").value || 0)
+        );
+        otherRetirementincome = parseFloat(
+          parseCurrency(
+            document.getElementById("otherRetirementincome").value || 0
+          )
+        );
+        retirementAge = parseFloat(
+          document.getElementById("retirementage").value || 0
+        );
+        lifeexpectancy = parseFloat(
+          document.getElementById("lifeexpectancy").value || 0
+        );
+        preRetirementRate = parseFloat(
+          document.getElementById("retirementRatereturn").value || 0
+        );
+        postRetirementrate = parseFloat(
+          document.getElementById("postRetirementrate").value || 0
+        );
+        inflationrate = parseFloat(
+          document.getElementById("inflationrate").value || 0
+        );
+        annualIncomeIncrease = parseFloat(
+          document.getElementById("annualIncomeincrease").value || 0
+        );
+
+        dataObject = {};
+        wwyn;
+        data = {};
+        monthly_target;
+        balance_array = [];
+        ages_array = [];
+        return_array = [];
+        salary_basis_array = [];
+        annual_contribution_array = [];
+        annual_retirement_array = [];
+        interest_earned_array = [];
+        balance_array1 = [];
+        ages_array1 = [];
+        return_array1 = [];
+        salary_basis_array1 = [];
+        annual_contribution_array1 = [];
+        annual_retirement_array1 = [];
+        interest_earned_array1 = [];
+        retirement_age_when_saving_runout = [];
+
+        agesArray = [];
+        balanceArray = [];
+        returnArray = [];
+        salaryBasisArray = [];
+        annualContributionArray = [];
+        annualRetirementArray = [];
+        interestEarnedArray = [];
+
+        data = What_you_will_have(monthlyContribution);
+        console.log("What you will have: ");
+        console.log(data);
+        percentOfMonthlyIncome =
+          (monthlyContribution * 100) / (annualtaxincome / 12);
+        document.getElementById("percentOfMonthlyIncome").innerText =
+          Math.round(percentOfMonthlyIncome);
+        key = Object.keys(data);
+        t = data[key[key.length - 1]].i;
+
+        for (var key in data) {
+          if (data[key].i === retirementAge) {
+            index_of_ret_age = parseInt(key - 1);
+            break;
+          }
+        }
+        tt = 0;
+
+        if (data[key[key.length - 1]].i != lifeexpectancy) {
+          do {
+            if (currentSavings == 0) {
+              currentSavings = 1;
+              predictedLifespan = predict_lifespan(tt);
+            } else {
+              predictedLifespan = predict_lifespan(tt);
+            }
+            tt++;
+          } while (predictedLifespan.i < lifeexpectancy);
+          monthly_target = tt;
+        } else {
+          predictedLifespan = predict_lifespan(monthly_target);
+        }
+
+        console.log(predictedLifespan);
+
+        what_you_will_have = balance_array1[index_of_ret_age];
+        what_will_you_need = balance_array[index_of_ret_age];
+
+        document.getElementById("retirement_age").innerHTML = retirementAge;
+        document.getElementById("whatYouHave").innerHTML =
+          "$" + valueFormat(what_you_will_have);
+        document.getElementById("whatYouNeed").innerHTML =
+          "$" + valueFormat(what_will_you_need);
+
+        document.getElementById("total_retirement_saving").innerHTML =
+          "$" + valueFormat(what_you_will_have);
+        document.getElementById("monthly_contribute").innerHTML =
+          document.getElementById("monthlycontribution").value;
+        document.getElementById("age_retirement_saving_out").innerHTML = t;
+
+        document.getElementById("total_retirement_saving_target").innerHTML =
+          "$" + valueFormat(what_will_you_need);
+        document.getElementById("monthly_contribute_target").innerHTML =
+          "$" + new Intl.NumberFormat().format(monthly_target);
+        document.getElementById("age_retirement_saving_out_target").innerHTML =
+          document.getElementById("lifeexpectancy").value;
+
+        const roundedBalanceArray1 = balance_array1.map(function (value) {
+          return Math.round(value);
+        });
+        const roundedBalanceArray = balance_array.map(function (value) {
+          return Math.round(value);
+        });
+
+// REMOVE your old Highcharts.chart("container", {...}); block entirely
+// and replace with the following:
+
+Highcharts.chart("container", {
+  chart: {
+    type: "area",
+    backgroundColor: "#f9f9f9",  // or "transparent"
+    marginLeft: 80,
+    marginRight: 80,
+    marginTop: 50,
+    marginBottom: 50,
+    style: {
+      fontFamily: "Open Sans, sans-serif"
+    }
+  },
+  credits: { enabled: false },
+  exporting: { enabled: false },
+  title: { text: "" },
+  subtitle: { text: "" },
+
+  legend: {
+    align: "left",
+    verticalAlign: "top",
+    layout: "vertical",
+    x: 80,
+    y: 50
+  },
+
+  xAxis: {
+    categories: ages_array,
+    lineColor: "transparent",
+    tickLength: 0,
+    gridLineWidth: 0,
+    minPadding: 0.1,
+    maxPadding: 0.1,
+    labels: {
+      style: {
+        color: "#666",
+        fontSize: "13px"
+      }
+    }
+  },
+
+  yAxis: {
+    min: 0,
+    title: { text: "" },
+    lineColor: "transparent",
+    tickLength: 0,
+    gridLineColor: "#e1e1e1",
+    gridLineWidth: 1,
+    labels: {
+      style: {
+        color: "#666",
+        fontSize: "13px"
+      },
+      formatter: function () {
+        // same currency formatting
+        const value = this.value;
+        if (Math.abs(value) >= 1e6) {
+          return "$" + Highcharts.numberFormat(value / 1e6, 0) + "m";
+        } else if (Math.abs(value) >= 1e3) {
+          return "$" + Highcharts.numberFormat(value / 1e3, 0) + "k";
+        } else {
+          return "$" + Highcharts.numberFormat(value, 0, ".", ",");
+        }
+      }
+    }
+  },
+
+  tooltip: {
+    shared: true,
+    useHTML: true,
+    backgroundColor: "#fff",
+    borderColor: "#ccc",
+    borderRadius: 4,
+    formatter: function () {
+      let s = `<div style="padding:8px 12px;"><strong>${this.x}</strong><br/>`;
+      this.points.forEach(point => {
+        s += `
+          <span style="color:${point.series.color}; font-weight:bold;">
+            ●
+          </span>
+          ${point.series.name}: $${Highcharts.numberFormat(point.y, 0, ".", ",")}<br/>
+        `;
+      });
+      s += "</div>";
+      return s;
+    }
+  },
+
+  // Overlapping areas, no stacking
+  plotOptions: {
+    area: {
+      // stacking: "normal",  <-- Remove or comment out
+      lineWidth: 2,
+      marker: { enabled: false },
+      animation: {
+        duration: 1500,
+        easing: "easeOutExpo"
+      }
+    },
+    series: {
+      fillOpacity: 0.7
+    }
+  },
+
+ series: [
+  {
+    name: "What you'll have",
+    data: roundedBalanceArray1,
+    color: "#203631"
+  },
+  {
+    name: "What you'll need",
+    data: roundedBalanceArray,
+    color: "#a9b9a3"
+  }
+]
+
+});
+
+           }
+
+      function strToNum(value) {
+        var newStr = value.replace(/,/g, "");
+        var temp = newStr.replace(/\$/g, "");
+        var numberValidation = temp.replace(/\%/g, "");
+        return numberValidation || 0;
+      }
+      function valueFormat(value, method = "none") {
+        if (value == NaN) {
+          value = 0;
+        }
+        if (method == "euro") {
+          return (
+            value.toLocaleString("en", {
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            }) + "$"
+          );
+        } else if (method == "percentage") {
+          return (
+            value.toLocaleString("en", {
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            }) + "%"
+          );
+        } else {
+          return value.toLocaleString("en", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          });
+        }
+      }
+
+      function predict_lifespan(monthlyContribution) {
+        dataObject = {};
+        data = {};
+        balance_array = [];
+        ages_array = [];
+        return_array = [];
+        salary_basis_array = [];
+        annual_contribution_array = [];
+        annual_retirement_array = [];
+        interest_earned_array = [];
+        retirement_age_when_saving_runout = [];
+
+        var ret = 0;
+        var salary_basis = 0;
+        var annual_contribution = 0;
+        var annual_retirement = 0;
+        var interest_earned = 0;
+        var balance = currentSavings;
+
+        for (i = currentAge; i <= lifeexpectancy; i++) {
+          if (i < retirementAge) {
+            ret = preRetirementRate;
+          } else {
+            ret = postRetirementrate;
+          }
+
+          if (currentAge >= retirementAge) {
+            salary_basis = monthlybudget;
+          } else {
+            if (i == currentAge) {
+              salary_basis = annualtaxincome;
+            } else {
+              if (i >= retirementAge) {
+                salary_basis = 0;
+              } else {
+                salary_basis =
+                  (1 + annualIncomeIncrease / 100) *
+                  salary_basis_array[i - currentAge - 1];
+              }
+            }
+          }
+          if (i == currentAge) {
+            annual_contribution = monthlyContribution * 12;
+          } else {
+            if (i >= retirementAge) {
+              annual_contribution = 0;
+            } else {
+              annual_contribution =
+                annual_contribution_array[i - currentAge - 1] +
+                annual_contribution_array[i - currentAge - 1] *
+                  (annualIncomeIncrease / 100);
+            }
+          }
+
+          if (i == currentAge) {
+            annual_retirement = (monthlybudget - otherRetirementincome) * 12;
+          } else {
+            annual_retirement =
+              (monthlybudget - otherRetirementincome) *
+              12 *
+              Math.pow(1 + inflationrate / 100, i - currentAge);
+          }
+
+          rate = ret / 100;
+          nper = 1;
+          pmt = -annual_contribution;
+          pv = -balance;
+          type = 0;
+
+          function FV(rate, nper, pmt, pv, type) {
+            var pow = Math.pow(1 + rate, nper),
+              fv;
+            if (rate) {
+              fv = (pmt * (1 + rate * type) * (1 - pow)) / rate - pv * pow;
+            } else {
+              fv = -1 * (pv + pmt * nper);
+            }
+            return fv.toFixed(2);
+          }
+          future_value = parseFloat(FV(rate, nper, pmt, pv, type));
+
+          if (i == currentAge) {
+            interest_earned = future_value - (balance + annual_contribution);
+          } else {
+            interest_earned =
+              future_value -
+              (balance_array[i - currentAge - 1] + annual_contribution);
+          }
+
+          if (i == currentAge) {
+            temp = balance + interest_earned + annual_contribution;
+            if (i >= retirementAge) {
+              temp1 = annual_retirement;
+            } else {
+              temp1 = 0;
+            }
+            balance = temp - temp1;
+          } else {
+            temp =
+              balance_array[i - currentAge - 1] +
+              interest_earned +
+              annual_contribution;
+            if (i >= retirementAge) {
+              temp1 = annual_retirement;
+            } else {
+              temp1 = 0;
+            }
+            balance = temp - temp1;
+          }
+
+          if (balance <= 0) {
+            retirement_age_when_saving_runout.push(i);
+            remaining_amount = 0;
+            break;
+          }
+          ages_array.push(i);
+          balance_array.push(balance);
+          return_array.push(ret);
+          salary_basis_array.push(salary_basis);
+          annual_contribution_array.push(annual_contribution);
+          annual_retirement_array.push(annual_retirement);
+          interest_earned_array.push(interest_earned);
+
+          dataObject[i - currentAge] = {
+            i,
+            return: ret,
+            salary_basis,
+            annual_contribution,
+            annual_retirement,
+            interest_earned,
+            balance,
+          };
+        }
+
+        keys = Object.keys(dataObject);
+        return dataObject[keys.length - 1];
+      }
+
+      function What_you_will_have(monthlyContribution) {
+        data = {};
+
+        balance_array1 = [];
+        ages_array1 = [];
+        return_array1 = [];
+        salary_basis_array1 = [];
+        annual_contribution_array1 = [];
+        annual_retirement_array1 = [];
+        interest_earned_array1 = [];
+        retirement_age_when_saving_runout1 = [];
+        var ret = 0;
+        var salary_basis = 0;
+        var annual_contribution = 0;
+        var annual_retirement = 0;
+        var interest_earned = 0;
+        var balance = currentSavings;
+
+        for (i = currentAge; i <= lifeexpectancy; i++) {
+          if (i < retirementAge) {
+            ret = preRetirementRate;
+          } else {
+            ret = postRetirementrate;
+          }
+
+          if (currentAge >= retirementAge) {
+            salary_basis = monthlybudget;
+          } else {
+            if (i == currentAge) {
+              salary_basis = annualtaxincome;
+            } else {
+              if (i >= retirementAge) {
+                salary_basis = 0;
+              } else {
+                salary_basis =
+                  (1 + annualIncomeIncrease / 100) *
+                  salary_basis_array1[i - currentAge - 1];
+              }
+            }
+          }
+
+          if (i == currentAge) {
+            annual_contribution = monthlyContribution * 12;
+          } else {
+            if (i >= retirementAge) {
+              annual_contribution = 0;
+            } else {
+              annual_contribution =
+                annual_contribution_array1[i - currentAge - 1] +
+                annual_contribution_array1[i - currentAge - 1] *
+                  (annualIncomeIncrease / 100);
+            }
+          }
+
+          if (i == currentAge) {
+            annual_retirement = (monthlybudget - otherRetirementincome) * 12;
+          } else {
+            annual_retirement =
+              (monthlybudget - otherRetirementincome) *
+              12 *
+              Math.pow(1 + inflationrate / 100, i - currentAge);
+          }
+
+          rate = ret / 100;
+          nper = 1;
+          pmt = -annual_contribution;
+          pv = -balance;
+          type = 0;
+
+          function FV(rate, nper, pmt, pv, type) {
+            var pow = Math.pow(1 + rate, nper),
+              fv;
+            if (rate) {
+              fv = (pmt * (1 + rate * type) * (1 - pow)) / rate - pv * pow;
+            } else {
+              fv = -1 * (pv + pmt * nper);
+            }
+            return fv.toFixed(2);
+          }
+          future_value = parseFloat(FV(rate, nper, pmt, pv, type));
+
+          if (i == currentAge) {
+            interest_earned = future_value - (balance + annual_contribution);
+          } else {
+            interest_earned =
+              future_value -
+              (balance_array1[i - currentAge - 1] + annual_contribution);
+          }
+
+          if (i == currentAge) {
+            temp = balance + interest_earned + annual_contribution;
+            if (i >= retirementAge) {
+              temp1 = annual_retirement;
+            } else {
+              temp1 = 0;
+            }
+            balance = temp - temp1;
+          } else {
+            temp =
+              balance_array1[i - currentAge - 1] +
+              interest_earned +
+              annual_contribution;
+            if (i >= retirementAge) {
+              temp1 = annual_retirement;
+            } else {
+              temp1 = 0;
+            }
+            balance = temp - temp1;
+          }
+
+          if (balance <= 0) {
+            retirement_age_when_saving_runout.push(i);
+            remaining_amount = 0;
+            break;
+          }
+          ages_array1.push(i);
+          balance_array1.push(balance);
+          return_array1.push(ret);
+          salary_basis_array1.push(salary_basis);
+          annual_contribution_array1.push(annual_contribution);
+          annual_retirement_array1.push(annual_retirement);
+          interest_earned_array1.push(interest_earned);
+
+          data[i - currentAge] = {
+            i,
+            return: ret,
+            salary_basis,
+            annual_contribution,
+            annual_retirement,
+            interest_earned,
+            balance,
+          };
+        }
+
+        keys = Object.keys(data);
+        return data;
+      }
+
+      function formatCurrencyField(inputField) {
+        const value = inputField.value.replace(/[\D]+/g, "");
+        inputField.value =
+          value === ""
+            ? ""
+            : parseInt(value).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              });
+      }
+
+      function parseCurrency(formattedValue) {
+        return parseFloat(formattedValue.replace(/[,$]+/g, ""));
+      }
+
+      document.querySelectorAll(".percent").forEach(function (inputField) {
+        inputField.addEventListener("input", function () {
+          formatPercentInput(inputField);
+        });
+      });
+
+      function formatPercentInput(inputField) {
+        let int = inputField.value.slice(0, inputField.value.length - 1);
+        if (int.includes("%")) {
+          inputField.value = "%";
+        } else if (int == "100") {
+          inputField.value = int + "%";
+          inputField.setSelectionRange(3, 3);
+        } else if (int.length >= 3 && int.length <= 4 && !int.includes(".")) {
+          inputField.value = int.slice(0, 2) + "." + int.slice(2, 3) + "%";
+          inputField.setSelectionRange(4, 4);
+        } else if ((int.length >= 5) & (int.length <= 6)) {
+          let whole = int.slice(0, 2);
+          let fraction = int.slice(3, 5);
+          inputField.value = whole + "." + fraction + "%";
+        } else {
+          inputField.value = int + "%";
+          inputField.setSelectionRange(
+            inputField.value.length - 1,
+            inputField.value.length - 1
+          );
+        }
+      }
+
+      function getFormattedPercentValue(elementId) {
+        let percentInput = document.getElementById(elementId);
+        return parseFloat(percentInput.value.slice(0, -1)) || 0;
+      }
+
+      function getInt(val) {
+        let v = parseFloat(val);
+        if (v % 1 === 0) {
+          return v;
+        } else {
+          let n = v.toString().split(".").join("");
+          return parseInt(n);
+        }
+      }
+    </script>
+  </body>
+</html>
