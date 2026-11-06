@@ -1343,7 +1343,7 @@ Highcharts.chart("container", {
   chart: {
     type: "area",
     backgroundColor: "#ffffff",  // or "transparent"
-    marginLeft: 55,
+    marginLeft: 68,
     marginRight: 12,
     marginTop: 50,
     marginBottom: 50,
@@ -1374,7 +1374,7 @@ Highcharts.chart("container", {
     labels: {
       style: {
         color: "#666",
-        fontSize: "13px"
+        fontSize: "11px"
       }
     }
   },
@@ -1389,7 +1389,7 @@ Highcharts.chart("container", {
     labels: {
       style: {
         color: "#666",
-        fontSize: "13px"
+        fontSize: "11px"
       },
       formatter: function () {
         // same currency formatting
@@ -1828,5 +1828,5 @@ Highcharts.chart("container", {
         }
       }
     </script>
-  <p class="container wfp-note">Illustrative estimates only, not a guarantee of future results. Actual returns, inflation, taxes, fees, and income needs may differ. This calculator does not replace a personalized retirement plan.</p><script>(function(){function sync(){var have=Number(document.getElementById('whatYouHave').textContent.replace(/[^0-9.-]/g,'')),need=Number(document.getElementById('whatYouNeed').textContent.replace(/[^0-9.-]/g,''));var pct=need>0?Math.max(0,Math.round(have/need*100)):0;document.getElementById('wfp-ring').style.setProperty('--progress',Math.min(pct,100)+'%');document.getElementById('wfp-percent').textContent=need>0?pct+'%':'—';}new MutationObserver(sync).observe(document.getElementById('whatYouHave'),{childList:true,subtree:true});new MutationObserver(sync).observe(document.getElementById('whatYouNeed'),{childList:true,subtree:true});sync();})();</script></body>
+  <p class="container wfp-note">Illustrative estimates only, not a guarantee of future results. Actual returns, inflation, taxes, fees, and income needs may differ. This calculator does not replace a personalized retirement plan.</p><script>(function(){function sync(){var have=Number(document.getElementById('whatYouHave').textContent.replace(/[^0-9.-]/g,'')),need=Number(document.getElementById('whatYouNeed').textContent.replace(/[^0-9.-]/g,''));var pct=need>0?Math.max(0,Math.round(have/need*100)):0;document.getElementById('wfp-ring').style.setProperty('--progress',Math.min(pct,100)+'%');document.getElementById('wfp-percent').textContent=need>0?pct+'%':'—';}new MutationObserver(sync).observe(document.getElementById('whatYouHave'),{childList:true,subtree:true});new MutationObserver(sync).observe(document.getElementById('whatYouNeed'),{childList:true,subtree:true});sync();})();</script><script>(function(){function report(){parent.postMessage({type:'wfp-calculator-height',height:document.body.scrollHeight},'https://www.womenfinancialpower.com');parent.postMessage({type:'wfp-calculator-height',height:document.body.scrollHeight},'https://js-dynamite-site-746d2b.webflow.io');}new ResizeObserver(report).observe(document.body);window.addEventListener('load',report);})();</script></body>
 </html>
