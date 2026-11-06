@@ -456,10 +456,12 @@
         }
       }
     </style>
-  </head>
+  <style id="wfp-modern-design">
+:root{--ink:#203631;--muted:#6d716d;--line:#deded8;--sage:#a9b9a3}body{background:#fff;color:var(--ink);font-family:Inter,Arial,sans-serif!important;margin:0}body,h5,label,p,input,.card,.cardTwo{font-family:Inter,Arial,sans-serif!important}.container{max-width:1200px;padding:36px 28px}.wfp-intro{margin-bottom:40px}.wfp-eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}.wfp-intro h1{font-size:clamp(30px,4vw,46px);font-weight:400;letter-spacing:-1.6px;line-height:1.12;margin:0 0 14px}.wfp-intro p{color:var(--muted);font-size:15px;max-width:600px}.container>.row{--bs-gutter-x:64px}.card,.cardTwo{padding:0!important;border:0;background:#fff;margin:0;border-radius:0}.mainheading h5,.mainheading2 h5{font-size:15px!important;font-weight:500;color:var(--ink)!important;margin-bottom:24px}.label{margin-bottom:19px}.label label,.labelcustom label{font-size:12px;font-weight:400;color:var(--muted);margin-bottom:8px}input.form-control{height:53px;padding:12px 15px!important;border:1px solid #d6d7d1!important;border-radius:5px!important;font-size:17px!important;font-weight:400!important;color:var(--ink);box-shadow:none!important;background:#fdfdfb!important}input.form-control:focus{border-color:var(--ink)!important;outline:2px solid #e5ebe2;outline-offset:2px}.label p{font-size:11px;color:var(--muted);margin:7px 0 0}.tooltip_span{color:#999d96;margin-left:3px}.anchorstyles{display:inline-block;color:var(--ink);font-size:11px;letter-spacing:1px;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:6px;margin:12px 0}.divstyling{display:grid!important;grid-template-columns:1fr 1fr;padding:0;gap:24px;border-bottom:1px solid var(--line);padding-bottom:22px}.div_width,.div_width_2{max-width:none;margin:0}.pluton{font-size:12px;color:var(--muted)}.divstyling p{font-size:clamp(25px,3.5vw,40px);font-weight:400;letter-spacing:-1.3px;padding-top:8px;margin-bottom:0;color:var(--ink)!important}#whatYouNeed{color:#798772!important}#retirement_age{color:var(--ink)!important}.right-data>.row>div[style*="border-bottom"],.right-data>.row>div>div[style*="border-bottom"]{border-bottom:0!important}.right-data button{font-size:11px!important;letter-spacing:.8px;padding:12px 16px;margin-right:6px;border-radius:4px;border:1px solid var(--line);color:var(--muted)}.right-data button.active{background:var(--ink);border-color:var(--ink);color:#fff}.highcharts-figure{margin:0;max-width:none}.labelcustom{margin-bottom:18px}.irs--big .irs-bar,.irs--big .irs-handle{background:var(--ink)!important}.irs--big .irs-line{background:#e4e7e0!important}.irs--big .irs-single{background:#edf0e9!important;color:var(--ink)!important}.irs--big .irs-single:before{border-top-color:#edf0e9!important}#summary_div{gap:24px;flex-wrap:wrap;margin:28px 0}.current,.target{min-width:200px;margin:0!important}.summary-child{font-size:12px;border-color:var(--line)!important;gap:12px;padding:14px 0}.summary-heading{font-size:14px!important}.wfp-progress{display:flex;align-items:center;gap:24px;padding:25px 0}.wfp-ring{width:104px;height:104px;flex-shrink:0;border-radius:50%;background:conic-gradient(var(--ink) var(--progress,0%),#e8e6de 0);position:relative;display:grid;place-items:center}.wfp-ring:before{content:'';position:absolute;inset:11px;border-radius:50%;background:white}.wfp-ring span{position:relative;font-size:22px;letter-spacing:-.5px}.wfp-progress p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.wfp-progress strong{font-weight:500;color:var(--ink);font-size:14px}.wfp-note{border-top:1px solid var(--line);margin-top:32px;padding-top:18px;font-size:11px;color:var(--muted);line-height:1.7}@media(max-width:767px){.container{padding:24px 18px}.wfp-intro{margin-bottom:30px}.cardTwo{margin-top:36px}.container>.row{--bs-gutter-x:24px}.divstyling p{font-size:29px}.wfp-progress{gap:18px}.current,.target{width:100%!important}.highcharts-figure{overflow:hidden}}
+</style></head>
 
   <body>
-    <div class="container">
+    <div class="container"><header class="wfp-intro"><div class="wfp-eyebrow">Women Financial Power · Retirement calculator</div><h1>See where your savings can take you.</h1><p>A little clarity for your next chapter. Explore how today’s choices could shape your retirement.</p></header>
       <div class="row">
         <!-- LEFT SIDE: Retirement details -->
         <div class="col-md-4">
@@ -829,7 +831,7 @@
                     Retirement savings at age <span id="retirement_age">0</span>
                   </h5>
                 </div>
-                <div class="d-sm-flex divstyling">
+                <div class="wfp-progress" aria-live="polite"><div class="wfp-ring" id="wfp-ring"><span id="wfp-percent">0%</span></div><p><strong>Of your estimated savings goal</strong><br>Compare your projected savings with what you may need.<br>Adjust your numbers to explore the possibilities.</p></div><div class="d-sm-flex divstyling">
                   <div class="flex-fill div_width border_1">
                     <div class="pluton">What you'll have</div>
                     <p class="pluton-value" id="whatYouHave">0</p>
@@ -1340,9 +1342,9 @@
 Highcharts.chart("container", {
   chart: {
     type: "area",
-    backgroundColor: "#f9f9f9",  // or "transparent"
-    marginLeft: 80,
-    marginRight: 80,
+    backgroundColor: "#ffffff",  // or "transparent"
+    marginLeft: 55,
+    marginRight: 12,
     marginTop: 50,
     marginBottom: 50,
     style: {
@@ -1357,9 +1359,9 @@ Highcharts.chart("container", {
   legend: {
     align: "left",
     verticalAlign: "top",
-    layout: "vertical",
-    x: 80,
-    y: 50
+    layout: "horizontal",
+    x: 0,
+    y: 0
   },
 
   xAxis: {
@@ -1431,12 +1433,12 @@ Highcharts.chart("container", {
       lineWidth: 2,
       marker: { enabled: false },
       animation: {
-        duration: 1500,
+        duration: 250,
         easing: "easeOutExpo"
       }
     },
     series: {
-      fillOpacity: 0.7
+      fillOpacity: 0.12
     }
   },
 
@@ -1826,5 +1828,5 @@ Highcharts.chart("container", {
         }
       }
     </script>
-  </body>
+  <p class="container wfp-note">Illustrative estimates only, not a guarantee of future results. Actual returns, inflation, taxes, fees, and income needs may differ. This calculator does not replace a personalized retirement plan.</p><script>(function(){function sync(){var have=Number(document.getElementById('whatYouHave').textContent.replace(/[^0-9.-]/g,'')),need=Number(document.getElementById('whatYouNeed').textContent.replace(/[^0-9.-]/g,''));var pct=need>0?Math.max(0,Math.round(have/need*100)):0;document.getElementById('wfp-ring').style.setProperty('--progress',Math.min(pct,100)+'%');document.getElementById('wfp-percent').textContent=need>0?pct+'%':'—';}new MutationObserver(sync).observe(document.getElementById('whatYouHave'),{childList:true,subtree:true});new MutationObserver(sync).observe(document.getElementById('whatYouNeed'),{childList:true,subtree:true});sync();})();</script></body>
 </html>
